@@ -12,10 +12,11 @@
 
 #include "checker.h"
 
-int		*itoa_stack(char **av, int **stack)
+int		*itoa_stack(char **av)
 {
 	int		i;
 	int		j;
+	int		*stack;
 
 	i = 0;
 	while (av[++i])
@@ -25,6 +26,8 @@ int		*itoa_stack(char **av, int **stack)
 			if (av[i][j] < '0' || av[i][j] > '9')
 				return (NULL);
 	}
+	if (!(stack = (int *)malloc(sizeof(int) * (i - 1))))
+		return (NULL);
 	i = 0;
 	while (av[++i])
 		(*stack)[i - 1] = ft_itoa(av[i]);
@@ -57,19 +60,26 @@ char	*charjoin(char **rule, char buf)
 	return (res);
 }
 
-void	appl
+void	applyrule(int **stack, int *size, char *rule)
+{
+}
 
 int		main(int ac, char **av)
 {
 	char	buf;
 	char	*rule;
-	int		*a;
-	int		*b;
+	int		**stack;
+	int		size[2];
 
 	if (ac == 1)
 		return (0);
-	if (!(a = itoa_stack(av)))
+	if (!(stack = (char **)malloc(sizeof(char *) * 2)))
+		return (0);
+	if (!(stack[0] = itoa_stack(av)))
 		return (error());
+	stack[1] = NULL;
+	size[0] = ac - 1;
+	size[1] = 0;
 	while ((read(1, buf, 1)))
 	{
 		if (buf && buf != '\n')
@@ -78,7 +88,7 @@ int		main(int ac, char **av)
 				return (0);
 		}
 		else if (buf == '\n')
-			applyrule(stack, ac - 1, rule);
+			applyrule(stack, size, rule);
 	}
 	if (issort(stack, ac - 1))
 		write(1, "OK\n", 3);
