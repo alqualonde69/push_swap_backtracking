@@ -45,5 +45,9 @@ int		main(int ac, char **av)
 		write(1, "OK\n", 3);
 	else
 		write(1, "KO\n", 3);
+	stack[0] ? free(stack[0]) : 0;
+	stack[1] ? free(stack[1]) : 0;
+	free(size);
+	free(stack);
 	return (0);
 }
