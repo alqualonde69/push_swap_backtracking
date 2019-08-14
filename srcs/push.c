@@ -10,30 +10,33 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "push_swap.h"
 
-void	push(int **stack, int **size, int o)
+void	push(t_ps **dst, t_ps **src)
 {
-	int		a;
-	int		b;
-	int		i;
-	int		*tmp;
-
-	a = o ? 1 : 0;
-	b = o ? 0 : 1;
-	tmp = stack[a];
-	if (!(stack[a] = (int *)malloc(sizeof(int) * (++(*size)[a]))))
-		return ;
-	stack[a][0] = stack[b][0];
-	i = 0;
-	while (++i < (*size)[a])
-		stack[a][i] = tmp[i - 1];
-	tmp ? free(tmp) : 0;
-	tmp = stack[b];
-	if (!(stack[b] = (int *)malloc(sizeof(int) * (--(*size)[b]))))
-		return ;
-	i = -1;
-	while (++i < (*size)[b])
-		stack[b][i] = tmp[i + 1];
-	tmp ? free(tmp) : 0;
+	while (*dst && (*dst)->c)
+		*dst = (*dst)->nxt;
+	while (*dst && (*dst)->prv)
+	{
+		(*dst)->c = (*dst)->prv->c;
+		(*dst)->n = (*dst)->prv->n;
+		*dst = (*dst)->prv;
+	}
+	(*dst)->n = (*src)->n;
+	(*dst)->c = (*src)->c;
+	(*src)->n = 0;
+	(*src)->c = 0;
+	if ((*src)->nxt && (*src)->nxt->c)
+	{
+		while ((*src)->nxt && (*src)->nxt->c)
+		{
+			(*src)->n = (*src)->nxt->n;
+			(*src)->c = (*src)->nxt->c;
+			*src = (*src)->nxt;
+		}
+		(*src)->n = 0;
+		(*src)->c = 0;
+		while ((*src)->prv)
+			*src = (*src)->prv;
+	}
 }

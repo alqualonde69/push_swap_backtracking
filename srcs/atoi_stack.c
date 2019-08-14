@@ -10,26 +10,44 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "push_swap.h"
 
-int		*atoi_stack(char **av)
+t_ps	*atoi_stack(char **av, unsigned short f)
 {
 	int		i;
 	int		j;
-	int		*stack;
+	t_ps	*head;
+	t_ps	*a;
 
-	i = 0;
+	i = f + 1;
+	if ((av[i][0] < '0' || av[i][0] > '9') && av[i][0] != '-' &&
+		av[i][0] != '+')
+		return (NULL);
 	while (av[++i])
 	{
+		if (!av[i][0])
+			return (NULL);
 		j = -1;
 		while (av[i][++j])
 			if (av[i][j] < '0' || av[i][j] > '9')
 				return (NULL);
 	}
-	if (!(stack = (int *)malloc(sizeof(int) * (i - 1))))
+	if (!(head = (t_ps *)malloc(sizeof(t_ps))))
 		return (NULL);
-	i = 0;
-	while (av[++i])
-		stack[i - 1] = ft_atoi(av[i]);
-	return (stack);
+	head->n = ft_atoi(av[++f]);
+	head->c = 1;
+	head->prv = NULL;
+	head->nxt = NULL;
+	a = head;
+	while (av[++f])
+	{
+		if (!(a->nxt = (t_ps *)malloc(sizeof(t_ps))))
+			return (NULL);
+		a->nxt->prv = a;
+		a = a->nxt;
+		a->n = ft_atoi(av[f]);
+		a->c = 1;
+		a->nxt = NULL;
+	}
+	return (head);
 }

@@ -74,13 +74,18 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@echo -n ⭐ ️
 
 $(NAME): $(OBJ)
-	@echo "\n\n🌜 $(BOLD)$(YELLOW)LIBFT IS READY🌛\n"
+	@echo "\n\n🌕 🌖 🌗 🌘 🌚 🌒 🌓 🌔 🌕"
+	@echo "🌜 $(BOLD)$(YELLOW)LIBFT IS READY🌛"
+	@echo "🌕 🌖 🌗 🌘 🌚 🌒 🌓 🌔 🌕\n"
 	@ar -rc $(NAME) $?
 
 clean:
 	@rm -rf $(OBJ_PATH)
+	@echo "$(BOLD)$(GREEN)OBJECTS DELETED  ✅"
 
 fclean: clean
 	@rm -rf $(NAME)
+	@echo "$(BOLD)$(GREEN)LIBFT DELETED    ✅"
 
 re: fclean all
+

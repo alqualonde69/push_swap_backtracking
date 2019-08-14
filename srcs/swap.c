@@ -10,13 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "push_swap.h"
 
-void	swap(int **stack)
+void	swap(t_ps **stack)
 {
 	int		tmp;
 
-	tmp = (*stack)[0];
-	(*stack)[0] = (*stack)[1];
-	(*stack)[1] = tmp;
+	tmp = (*stack)->n;
+	(*stack)->n = (*stack)->nxt->n;
+	(*stack)->nxt->n = tmp;
 }

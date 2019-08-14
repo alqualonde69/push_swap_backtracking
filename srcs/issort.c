@@ -10,15 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "push_swap.h"
 
-int		issort(int *stack, int size)
+int		issort(t_ps *a)
 {
-	int		i;
-
-	i = 0;
-	while (++i < size)
-		if (stack[i] < stack[i - 1])
+	while (a->nxt)
+	{
+		if (a->n > a->nxt->n)
 			return (0);
+		a = a->nxt;
+	}
 	return (1);
 }

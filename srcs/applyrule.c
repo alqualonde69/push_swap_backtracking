@@ -10,50 +10,50 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "push_swap.h"
 
-void	applyrule(int **stack, int **size, char **rule)
+void	applyrule(t_ps **a, t_ps **b, char **rule)
 {
 	int		len;
 
 	len = ft_strlen(*rule);
 	if (len == 2)
 	{
-		if ((*rule)[0] == 's' && (*rule)[1] == 'a' && (*size)[0] > 1)
-			swap(&stack[0]);
-		else if ((*rule)[0] == 's' && (*rule)[1] == 'b' && (*size)[1] > 1)
-			swap(&stack[1]);
+		if ((*rule)[0] == 's' && (*rule)[1] == 'a' && (*a)->c && (*a)->nxt->c)
+			swap(a);
+		else if ((*rule)[0] == 's' && (*rule)[1] == 'b' && (*b)->c && (*b)->nxt->c)
+			swap(b);
 		else if ((*rule)[0] == 's' && (*rule)[1] == 's')
 		{
-			(*size)[0] > 1 ? swap(&stack[0]) : 0;
-			(*size)[1] > 1 ? swap(&stack[1]) : 0;
+			(*a)->c && (*a)->nxt->c ? swap(a) : 0;
+			(*b)->c && (*b)->nxt->c ? swap(b) : 0;
 		}
-		else if ((*rule)[0] == 'p' && (*rule)[1] == 'a' && (*size)[1] > 0)
-			push(stack, size, 0);
-		else if ((*rule)[0] == 'p' && (*rule)[1] == 'b' && (*size)[0] > 0)
-			push(stack, size, 1);
-		else if ((*rule)[0] == 'r' && (*rule)[1] == 'a' && (*size)[0] > 1)
-			rotate(&stack[0], (*size)[0], 0);
-		else if ((*rule)[0] == 'r' && (*rule)[1] == 'b' && (*size)[1] > 1)
-			rotate(&stack[1], (*size)[1], 0);
+		else if ((*rule)[0] == 'p' && (*rule)[1] == 'a' && (*b)->c)
+			push(a, b);
+		else if ((*rule)[0] == 'p' && (*rule)[1] == 'b' && (*a)->c)
+			push(b, a);
+		else if ((*rule)[0] == 'r' && (*rule)[1] == 'a' && (*a)->c && (*a)->nxt->c)
+			rotate(a, 0);
+		else if ((*rule)[0] == 'r' && (*rule)[1] == 'b' && (*b)->c && (*b)->nxt->c)
+			rotate(b, 0);
 		else if ((*rule)[0] == 'r' && (*rule)[1] == 'r')
 		{
-			(*size)[0] > 1 ? rotate(&stack[0], (*size)[0], 0) : 0;
-			(*size)[1] > 1 ? rotate(&stack[1], (*size)[1], 0) : 0;
+			(*a)->c && (*a)->nxt->c ? rotate(a, 0) : 0;
+			(*b)->c && (*b)->nxt->c ? rotate(b, 0) : 0;
 		}
 	}
 	else if (len == 3 && (*rule)[0] == 'r' && (*rule)[1] == 'r')
 	{
-		if ((*rule)[2] == 'a' && (*size)[0] > 1)
-			rotate(&stack[0], (*size)[0], 1);
-		else if ((*rule)[2] == 'b' && (*size)[1] > 1)
-			rotate(&stack[1], (*size)[1], 1);
+		if ((*rule)[2] == 'a' && (*a)->c && (*a)->nxt->c)
+			rotate(a, 1);
+		else if ((*rule)[2] == 'b' && (*b)->c && (*b)->nxt->c)
+			rotate(b, 1);
 		else if ((*rule)[2] == 'r')
 		{
-			(*size)[0] > 1 ? rotate(&stack[0], (*size)[0], 1) : 0;
-			(*size)[1] > 1 ? rotate(&stack[1], (*size)[1], 1) : 0;
+			(*a)->c && (*a)->nxt->c ? rotate(a, 1) : 0;
+			(*b)->c && (*b)->nxt->c ? rotate(b, 1) : 0;
 		}
 	}
-	free(*rule);
-	*rule = NULL;
+//	free(*rule);
+//	*rule = NULL;
 }

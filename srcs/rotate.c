@@ -10,20 +10,34 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "push_swap.h"
 
-void	rotate(int **stack, int size, int dir)
+void	rotate(t_ps **stack, int dir)
 {
-	int		i;
 	int		tmp;
 
-	tmp = dir ? (*stack)[size - 1] : (*stack)[0];
-	i = dir ? size - 1 : 0;
 	if (dir)
-		while (--i >= 0)
-			(*stack)[i + 1] = (*stack)[i];
+	{
+		while ((*stack)->nxt && (*stack)->nxt->c)
+			*stack = (*stack)->nxt;
+		tmp = (*stack)->n;
+		while ((*stack)->prv)
+		{
+			(*stack)->n = (*stack)->prv->n;
+			*stack = (*stack)->prv;
+		}
+		(*stack)->n = tmp;
+	}
 	else
-		while (++i < size)
-			(*stack)[i - 1] = (*stack)[i];
-	dir ? ((*stack)[i + 1] = tmp) : ((*stack)[i - 1] = tmp);
+	{
+		tmp = (*stack)->n;
+		while ((*stack)->nxt && (*stack)->nxt->c)
+		{
+			(*stack)->n = (*stack)->nxt->n;
+			*stack = (*stack)->nxt;
+		}
+		(*stack)->n = tmp;
+		while ((*stack)->prv)
+			*stack = (*stack)->prv;
+	}
 }
