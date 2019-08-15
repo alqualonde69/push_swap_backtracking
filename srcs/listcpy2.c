@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_main.c                                          :+:      :+:    :+:   */
+/*   listcpy2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shunt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/14 01:05:05 by shunt             #+#    #+#             */
-/*   Updated: 2019/08/14 01:05:07 by shunt            ###   ########.fr       */
+/*   Created: 2019/08/15 12:44:56 by shunt             #+#    #+#             */
+/*   Updated: 2019/08/15 12:44:58 by shunt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int 	main(int ac, char **av)
+void	listcpy2(t_ps *src, t_ps **dst)
 {
-	char	**rules;
-	t_ps	*a;
-	t_ps	*b;
+	t_ps	*tmp;
 
-	if (ac < 2)
-		return (0);
-	if (!(a = atoi_stack(av, 0)))
-		return (error());
-	if (!(b = b_stack(ac - 1)))
-		return (0);
-	if (!(rules = rules_m()))
-		return (0);
-	push_swap(a, b, rules);
-	free_t_ps(&a, &b);
-	return (0);
+	tmp = *dst;
+	while (src && (*dst))
+	{
+		(*dst)->c = src->c;
+		(*dst)->n = src->n;
+		*dst = (*dst)->nxt;
+		src = src->nxt;
+	}
+	*dst = tmp;
 }

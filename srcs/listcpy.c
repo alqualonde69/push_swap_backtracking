@@ -1,32 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_main.c                                          :+:      :+:    :+:   */
+/*   listcpy.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shunt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/14 01:05:05 by shunt             #+#    #+#             */
-/*   Updated: 2019/08/14 01:05:07 by shunt            ###   ########.fr       */
+/*   Created: 2019/08/15 12:44:45 by shunt             #+#    #+#             */
+/*   Updated: 2019/08/15 12:44:47 by shunt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int 	main(int ac, char **av)
+t_ps	*listcpy(t_ps *src)
 {
-	char	**rules;
-	t_ps	*a;
-	t_ps	*b;
+	t_ps	*res;
 
-	if (ac < 2)
-		return (0);
-	if (!(a = atoi_stack(av, 0)))
-		return (error());
-	if (!(b = b_stack(ac - 1)))
-		return (0);
-	if (!(rules = rules_m()))
-		return (0);
-	push_swap(a, b, rules);
-	free_t_ps(&a, &b);
-	return (0);
+	if (!(res = (t_ps *)malloc(sizeof(t_ps))))
+		return (NULL);
+	res->nxt = NULL;
+	res->n = src->n;
+	res->prv = NULL;
+	res->c = src->c;
+	while (src->nxt)
+	{
+		if (!(res->nxt = (t_ps *)malloc(sizeof(t_ps))))
+			return (NULL);
+		res->nxt->prv = res;
+		res = res->nxt;
+		src = src->nxt;
+		res->nxt = NULL;
+		res->n = src->n;
+		res->c = src->c;
+	}
+	while (res->prv)
+		res = res->prv;
+	return (res);
 }

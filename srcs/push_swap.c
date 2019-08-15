@@ -12,76 +12,18 @@
 
 #include "push_swap.h"
 
-void	print_rules2(char **rules, int *seq, int i)
-{
-	int 	j;
-
-	j = -1;
-	while (++j < i)
-	{
-		ft_putstr(rules[seq[j]]);
-		write(1, " ", 1);
-	}
-	write(1, "\n", 1);
-}
-
-int 	test(t_ps *a, t_ps *b, char ***rs, int i)
-{
-	int 	j;
-
-	j = -1;
-//	printf("i = %d ", i);
-	while (++j < i)
-	{
-//		printf("rule%d = %s ", j + 1, rs[1][rs[0][0][j] - 48]);
-		applyrule(&a, &b, &rs[1][rs[0][0][j] - 48]);
-	}
-//	printf("\n");
-	if (!(b->c) && issort(a))
-		return (1);
-	return (0);
-}
-
-t_ps	*listcpy(t_ps *src)
-{
-	t_ps	*res;
-
-	if (!(res = (t_ps *)malloc(sizeof(t_ps))))
-		return (NULL);
-	res->nxt = NULL;
-	res->n = src->n;
-	res->prv = NULL;
-	res->c = src->c;
-	while (src->nxt)
-	{
-		if (!(res->nxt = (t_ps *)malloc(sizeof(t_ps))))
-			return (NULL);
-		res->nxt->prv = res;
-		res = res->nxt;
-		src = src->nxt;
-		res->nxt = NULL;
-		res->n = src->n;
-		res->c = src->c;
-	}
-	while (res->prv)
-		res = res->prv;
-	return (res);
-}
-
-void	listcpy2(t_ps *src, t_ps **dst)
-{
-	t_ps	*tmp;
-
-	tmp = *dst;
-	while (src && (*dst))
-	{
-		(*dst)->c = src->c;
-		(*dst)->n = src->n;
-		*dst = (*dst)->nxt;
-		src = src->nxt;
-	}
-	*dst = tmp;
-}
+//void	print_rules2(char **rules, int *seq, int i)
+//{
+//	int 	j;
+//
+//	j = -1;
+//	while (++j < i)
+//	{
+//		ft_putstr(rules[seq[j]]);
+//		write(1, " ", 1);
+//	}
+//	write(1, "\n", 1);
+//}
 
 void	push_swap(t_ps *a, t_ps *b, char **rules)
 {
@@ -91,6 +33,8 @@ void	push_swap(t_ps *a, t_ps *b, char **rules)
 	int		i;
 	int 	k;
 
+	if (issort(a))
+		return ;
 	if (!(ta = listcpy(a)))
 		return ;
 	if (!(tb = listcpy(b)))

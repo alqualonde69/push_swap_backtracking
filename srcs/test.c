@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_main.c                                          :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shunt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/14 01:05:05 by shunt             #+#    #+#             */
-/*   Updated: 2019/08/14 01:05:07 by shunt            ###   ########.fr       */
+/*   Created: 2019/08/15 12:44:33 by shunt             #+#    #+#             */
+/*   Updated: 2019/08/15 12:44:35 by shunt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int 	main(int ac, char **av)
+int 	test(t_ps *a, t_ps *b, char ***rs, int i)
 {
-	char	**rules;
-	t_ps	*a;
-	t_ps	*b;
+	int 	j;
 
-	if (ac < 2)
-		return (0);
-	if (!(a = atoi_stack(av, 0)))
-		return (error());
-	if (!(b = b_stack(ac - 1)))
-		return (0);
-	if (!(rules = rules_m()))
-		return (0);
-	push_swap(a, b, rules);
-	free_t_ps(&a, &b);
+	j = -1;
+//	printf("i = %d ", i);
+	while (++j < i)
+	{
+//		printf("rule%d = %s ", j + 1, rs[1][rs[0][0][j] - 48]);
+		applyrule(&a, &b, &rs[1][rs[0][0][j] - 48]);
+	}
+//	printf("\n");
+	if (!(b->c) && issort(a))
+		return (1);
 	return (0);
 }

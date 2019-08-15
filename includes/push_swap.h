@@ -70,5 +70,8 @@ void			print_rules(char **rules, char *seq, int i);
 t_ps			*b_stack(int i);
 void			free_t_ps(t_ps **a, t_ps **b);
 void			print(t_ps *a, t_ps *b, int f);
+t_ps			*listcpy(t_ps *src);
+void			listcpy2(t_ps *src, t_ps **dst);
+int 			test(t_ps *a, t_ps *b, char ***rs, int i);
 
 #endif
