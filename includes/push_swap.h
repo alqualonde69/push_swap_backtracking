@@ -24,6 +24,10 @@
 
 # define V	(1u << 0u)
 # define C	(1u << 1u)
+# define MVP	seq[j - 1] != ':' && seq[j] != '9' && seq[j] != ':'
+# define MVP2	seq[j + 1] && seq[j + 1] != '9' && seq[j + 1] != ':'
+# define MVP3	seq[j + 2] && seq[j + 2] != '9' && seq[j + 2] != ':'
+# define MVP4	!seq[j + 3] || (seq[j + 3] && seq[j + 3] != '9')
 
 //# define DEF		\033[0m
 //# define BOLD		\033[1m
