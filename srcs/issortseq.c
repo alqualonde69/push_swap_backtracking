@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cleanp.c                                           :+:      :+:    :+:   */
+/*   issortseq.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shunt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/17 02:45:28 by shunt             #+#    #+#             */
-/*   Updated: 2019/08/17 02:45:29 by shunt            ###   ########.fr       */
+/*   Created: 2019/08/18 00:27:59 by shunt             #+#    #+#             */
+/*   Updated: 2019/08/18 00:28:00 by shunt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.c"
+#include "push_swap.h"
 
-int		cleanp(char *seq, int i)
+int		issortseq(char *seq, int i, int c)
 {
-	while (--i >= 0 && seq[i] != '0')
-		;
-	i >= 0 ? seq[i] = '2' : 0;
-	while (seq[++i] && seq[i] != '1')
-		;
-	seq[i] ? seq[i] = '2' : 0;
-	return (0);
+	int		j;
+
+	j = i;
+	while (--i > 0)
+		if (IS)
+		{
+			sortseq(seq, i, c);
+			i = j;
+		}
+	return (1);
 }

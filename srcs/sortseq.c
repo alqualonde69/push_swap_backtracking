@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cleanp.c                                           :+:      :+:    :+:   */
+/*   sortseq.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shunt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/17 02:45:28 by shunt             #+#    #+#             */
-/*   Updated: 2019/08/17 02:45:29 by shunt            ###   ########.fr       */
+/*   Created: 2019/08/18 00:27:09 by shunt             #+#    #+#             */
+/*   Updated: 2019/08/18 00:27:11 by shunt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.c"
+#include "push_swap.h"
 
-int		cleanp(char *seq, int i)
+int		sortseq(char *seq, int i, int c)
 {
-	while (--i >= 0 && seq[i] != '0')
-		;
-	i >= 0 ? seq[i] = '2' : 0;
-	while (seq[++i] && seq[i] != '1')
-		;
-	seq[i] ? seq[i] = '2' : 0;
-	return (0);
+	if (S1)
+		++seq[i];
+	else if (S2)
+		seq[i] += 2;
+	else if (S3)
+	{
+		seq[i] = '2';
+		++seq[i - 1];
+	}
+	while (seq[++i])
+		if (seq[i] != '0' && seq[i] != '1')
+			seq[i] = seq[i - 1] == '2' ? '3' : '2';
 }

@@ -18,36 +18,36 @@ int 	movep(char *seq, int i)
 	int 	k;
 
 	j = i;
-	while (--j >= 0 && seq[j] != '9')
+	while (--j >= 0 && seq[j] != '0')
 		;
 	if (j < 0)
 		return (0);
-	while (seq[++j] && seq[j] != ':')
+	while (seq[++j] && seq[j] != '1')
 		;
-	if (seq[j + 1] && seq[j + 1] != ':')
+	if (seq[j + 1] && seq[j + 1] != '1')
 	{
-		seq[j] = '0';
-		seq[j + 1] = ':';
+		seq[j] = '2';
+		seq[j + 1] = '1';
 	}
 	else
 	{
 		j = i;
-		while (--j >= 0 && seq[j] != '9')
+		while (--j >= 0 && seq[j] != '0')
 			;
 		k = j;
-		while (seq[++k] && seq[k] != ':')
+		while (seq[++k] && seq[k] != '1')
 			;
-		while (seq[++k] && seq[k] != ':')
+		while (seq[++k] && seq[k] != '1')
 			;
 		if (j + 3 < k)
 		{
-			while (--k >= 0 && seq[k] != ':')
+			while (--k >= 0 && seq[k] != '1')
 				;
-			seq[j] = '0';
-			seq[j + 1] = '9';
-			seq[j + 2] = '0';
-			seq[k] = '0';
-			seq[j + 3] = ':';
+			seq[j] = '2';
+			seq[j + 1] = '0';
+			seq[j + 2] = '2';
+			seq[k] = '2';
+			seq[j + 3] = '1';
 		}
 		else if (seq[k])
 		{
@@ -57,9 +57,9 @@ int 	movep(char *seq, int i)
 				if (MVP && MVP2 && MVP3 && (MVP4))
 				{
 					cleanp(seq, i);
-					seq[j] = '9';
-					seq[j + 1] = '0';
-					seq[j + 2] = ':';
+					seq[j] = '0';
+					seq[j + 1] = '2';
+					seq[j + 2] = '1';
 					return (1);
 				}
 			}

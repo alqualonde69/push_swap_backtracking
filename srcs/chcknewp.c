@@ -18,24 +18,24 @@ int 	chcknewp(char *seq, int i)
 
 	if (i != ft_strlen(seq))
 	{
-		seq[0] = '9';
-		seq[1] = '0';
-		seq[2] = ':';
+		seq[0] = '0';
+		seq[1] = '2';
+		seq[2] = '1';
 		j = 2;
 		while (++j < i)
-			seq[j] = seq[j - 1] == '0' ? '1' : '0';
+			seq[j] = seq[j - 1] == '2' ? '3' : '2';
 		return (1);
 	}
 	j = i;
-	while (--j >= 0 && seq[j] != '9')
+	while (--j >= 0 && seq[j] != '0')
 		;
 	while (seq[++j])
 	{
 		if (MVP && MVP2 && MVP3 && (MVP4))
 		{
-			seq[j] = '9';
-			seq[j + 1] = '0';
-			seq[j + 2] = ':';
+			seq[j] = '0';
+			seq[j + 1] = '2';
+			seq[j + 2] = '1';
 			return (1);
 		}
 	}

@@ -33,6 +33,7 @@ void	push_swap(t_ps *a, t_ps *b, char **rules)
 	int		i;
 	int 	k;
 
+	k = 0;
 	if (issort(a))
 		return ;
 	if (!(ta = listcpy(a)))
@@ -52,10 +53,11 @@ void	push_swap(t_ps *a, t_ps *b, char **rules)
 	{
 		listcpy2(a, &ta);
 		listcpy2(b, &tb);
-		if (!(k = sequence(i, &rs[0][0])))
-			return ;
-		if (k == 2)
-			++i;
+		if (!(sequence(i, rs[0][0])))
+		{
+			if (!(newp(rs[0][0], i, ++k)))
+				++i;
+		}
 		else
 			if (test(ta, tb, rs, i))
 				return (print_rules(rules, rs[0][0], i));

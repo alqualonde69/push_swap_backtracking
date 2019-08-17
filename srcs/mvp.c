@@ -16,7 +16,7 @@ int 	mvp(char *seq, int i, int c)
 {
 	int		k;
 
-	k = seqchr(seq, '9');
+	k = seqchr(seq, '0');
 	while (c)
 	{
 		if (movep(seq, i))

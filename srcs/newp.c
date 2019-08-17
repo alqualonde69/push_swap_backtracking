@@ -17,7 +17,7 @@ int		newp(char *seq, int i, int c)
 	int j;
 	int k;
 
-	k = seqchr(seq, '9');
+	k = seqchr(seq, '0');
 	j = -1;
 	if (c > k)
 		testp(seq, i, c, k);
@@ -26,7 +26,7 @@ int		newp(char *seq, int i, int c)
 			return (0);
 	j = -1;
 	while (seq[++j])
-		if (seq[j] != '9' && seq[j] != ':')
-			seq[j] = j > 0 && seq[j - 1] == '0' ? '1' : '0';
+		if (seq[j] != '0' && seq[j] != '1')
+			seq[j] = j > 0 && seq[j - 1] == '2' ? '3' : '2';
 	return (1);
 }

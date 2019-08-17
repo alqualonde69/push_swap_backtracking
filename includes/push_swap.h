@@ -24,31 +24,48 @@
 
 # define V	(1u << 0u)
 # define C	(1u << 1u)
-# define MVP	seq[j - 1] != ':' && seq[j] != '9' && seq[j] != ':'
-# define MVP2	seq[j + 1] && seq[j + 1] != '9' && seq[j + 1] != ':'
-# define MVP3	seq[j + 2] && seq[j + 2] != '9' && seq[j + 2] != ':'
-# define MVP4	!seq[j + 3] || (seq[j + 3] && seq[j + 3] != '9')
-
-//# define DEF		\033[0m
-//# define BOLD		\033[1m
-//# define UNDERLINE	\033[4m
-//# define REV		\033[7m
-//# define BLACK		\033[30m
-//# define RED		\033[31m
-//# define GREEN		\033[32m
-//# define YELLOW		\033[33m
-//# define BLUE		\033[34m
-//# define PINK		\033[35m
-//# define CYAN		\033[36m
-//# define GREY		\033[37m
-//# define BLACK_B	\033[40m
-//# define RED_B		\033[41m
-//# define GREEN_B	\033[42m
-//# define YELLOW_B	\033[43m
-//# define BLUE_B		\033[44m
-//# define PINK_B		\033[45m
-//# define CYAN_B		\033[46m
-//# define GREY_B		\033[47m
+# define MVP	seq[j - 1] != '1' && seq[j] != '0' && seq[j] != '1'
+# define MVP2	seq[j + 1] && seq[j + 1] != '0' && seq[j + 1] != '1'
+# define MVP3	seq[j + 2] && seq[j + 2] != '0' && seq[j + 2] != '1'
+# define MVP4	!seq[j + 3] || (seq[j + 3] && seq[j + 3] != '0')
+# define ISS	(seq[i - 1] == '2' && seq[i] == '2')	/*1*/
+# define ISS1	(seq[i - 1] == '2' && seq[i] == '5')		/*2*/
+# define ISS2	(seq[i - 1] == '2' && seq[i] == '6')	/*1*/
+# define ISS3	(seq[i - 1] == '3' && seq[i] == '4')			/*?*/
+# define ISS4	(seq[i - 1] == '3' && seq[i] == '7')	/*1*/
+# define ISS5	(seq[i - 1] == '3' && seq[i] == ':')				/*!*/
+# define ISS6	(seq[i - 1] == '4' && seq[i] == '3')	/*1*/
+# define ISS7	(seq[i - 1] == '4' && seq[i] == '8')		/*2*/
+# define ISS8	(seq[i - 1] == '4' && seq[i] == '9')	/*1*/
+# define ISS9	(seq[i - 1] == '5' && seq[i] == '2')	/*1*/
+# define ISS10	(seq[i - 1] == '5' && seq[i] == '5')		/*2*/
+# define ISS11	(seq[i - 1] == '5' && seq[i] == '6')	/*1*/
+# define ISS12	(seq[i - 1] == '6' && seq[i] == '2')	/*1*/
+# define ISS13	(seq[i - 1] == '6' && seq[i] == '5')		/*2*/
+# define ISS14	(seq[i - 1] == '6' && seq[i] == '6')	/*1*/
+# define ISS15	(seq[i - 1] == '7' && seq[i] == '3')	/*1*/
+# define ISS16	(seq[i - 1] == '7' && seq[i] == '9')				/*!*/
+# define ISS17	(seq[i - 1] == '7' && seq[i] == ':')				/*!*/
+# define ISS18	(seq[i - 1] == '8' && seq[i] == '4')	/*1*/
+# define ISS19	(seq[i - 1] == '8' && seq[i] == '9')				/*!*/
+# define ISS20	(seq[i - 1] == '8' && seq[i] == ':')				/*!*/
+# define ISS21	(seq[i - 1] == '9' && seq[i] == '4')	/*1*/
+# define ISS22	(seq[i - 1] == '9' && seq[i] == '7')		/*2*/
+# define ISS23	(seq[i - 1] == '9' && seq[i] == '8')	/*1*/
+# define ISS24	(seq[i - 1] == ':' && seq[i] == '3')	/*1*/
+# define ISS25	(seq[i - 1] == ':' && seq[i] == '7')		/*2*/
+# define ISS26	(seq[i - 1] == ':' && seq[i] == '8')	/*1*/
+# define IS1	ISS || ISS1 || ISS2 || ISS3 || ISS4 || ISS5 || ISS6 || ISS7
+# define IS2	ISS8 || ISS9 || ISS10 || ISS11 || ISS12 || ISS13 || ISS14
+# define IS3	ISS15 || ISS16 || ISS17 || ISS18 || ISS19 || ISS20 || ISS21
+# define IS4	ISS22 || ISS23 || ISS24 || ISS25 || ISS26
+# define IS		IS1 || IS2 || IS3 || IS4
+# define SS1	ISS || ISS2 || ISS4 || ISS6 || ISS8 || ISS9 || ISS11 || ISS12
+# define SS2	ISS14 || ISS15 || ISS18 || ISS21 || ISS23 || ISS24 || ISS26
+# define S1		SS1 || SS2 || (ISS3 && c > 1)
+# define S2		ISS1 || ISS7 || ISS10 || ISS13 || ISS22 || ISS25
+# define SS3	(ISS3 && c < 2)
+# define S3		ISS5 || ISS16 || ISS17 || ISS19 || ISS20 || SS3
 
 typedef struct	s_ps
 {
@@ -69,7 +86,7 @@ void			swap(t_ps **stack);
 char			**rules_m(void);
 int				*intcpy(int *src, int sz);
 void			push_swap(t_ps *a, t_ps *b, char **rules);
-int				sequence(int i, char **seq);
+int				sequence(int i, char *seq);
 void			print_rules(char **rules, char *seq, int i);
 t_ps			*b_stack(int i);
 void			free_t_ps(t_ps **a, t_ps **b);
@@ -77,5 +94,14 @@ void			print(t_ps *a, t_ps *b, int f);
 t_ps			*listcpy(t_ps *src);
 void			listcpy2(t_ps *src, t_ps **dst);
 int 			test(t_ps *a, t_ps *b, char ***rs, int i);
+int				sortseq(char *seq, int i, int c);
+int				issortseq(char *seq, int i, int c);
+int				seqchr(char *s, char c);
+int 			chcknewp(char *seq, int i);
+int				cleanp(char *seq, int i);
+int 			movep(char *seq, int i);
+int 			mvp(char *seq, int i, int c);
+int				newp(char *seq, int i, int c);
+int				testp(char *seq, int i, int c, int k);
 
 #endif
