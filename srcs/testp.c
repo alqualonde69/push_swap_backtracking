@@ -15,14 +15,14 @@
 int		testp(char *seq, int i, int c, int k)
 {
 	while (--k >= 0)
-		cleanp(seq, i);
+		cleannewp(seq, i);
 	while (c)
 	{
 		if (chcknewp(seq, i))
 			if (testp(seq, i, c - 1, 0))
 				return (1);
 		if (!(movep(seq, i)))
-			return (cleanp(seq, i));
+			return (cleannewp(seq, i));
 	}
 	return (1);
 }

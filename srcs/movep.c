@@ -56,7 +56,7 @@ int 	movep(char *seq, int i)
 			{
 				if (MVP && MVP2 && MVP3 && (MVP4))
 				{
-					cleanp(seq, i);
+					cleannewp(seq, i);
 					seq[j] = '0';
 					seq[j + 1] = '2';
 					seq[j + 2] = '1';

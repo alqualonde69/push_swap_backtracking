@@ -16,7 +16,7 @@ int 	chcknewp(char *seq, int i)
 {
 	int 	j;
 
-	if (i != ft_strlen(seq))
+	if (i != (int)ft_strlen(seq))
 	{
 		seq[0] = '0';
 		seq[1] = '2';

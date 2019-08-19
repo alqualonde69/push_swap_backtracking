@@ -12,20 +12,7 @@
 
 #include "push_swap.h"
 
-//void	print_rules2(char **rules, int *seq, int i)
-//{
-//	int 	j;
-//
-//	j = -1;
-//	while (++j < i)
-//	{
-//		ft_putstr(rules[seq[j]]);
-//		write(1, " ", 1);
-//	}
-//	write(1, "\n", 1);
-//}
-
-void	push_swap(t_ps *a, t_ps *b, char **rules)
+char	*push_swap(t_ps *a, t_ps *b, char **rules)
 {
 	t_ps	*ta;
 	t_ps	*tb;
@@ -33,33 +20,51 @@ void	push_swap(t_ps *a, t_ps *b, char **rules)
 	int		i;
 	int 	k;
 
-	k = 0;
+	k = 1;
 	if (issort(a))
-		return ;
+		return (NULL);
 	if (!(ta = listcpy(a)))
-		return ;
+		return (NULL);
 	if (!(tb = listcpy(b)))
-		return ;
+		return (NULL);
 	i = 1;
 	if (!(rs = (char ***)malloc(sizeof(char **) * 2)))
-		return ;
+		return (NULL);
 	if (!(rs[0] = (char **)malloc(sizeof(char *) * 1)))
-		return ;
+		return (NULL);
 	if (!(rs[0][0] = (char *)malloc(sizeof(char) * 6000)))
-		return ;
+		return (NULL);
 	rs[1] = rules;
 	ft_bzero(rs[0][0], 6000);
 	while (i)
 	{
+		!k ? k = 1 : 0;
 		listcpy2(a, &ta);
 		listcpy2(b, &tb);
 		if (!(sequence(i, rs[0][0])))
 		{
-			if (!(newp(rs[0][0], i, ++k)))
+			if (i > 2 && k < i / 2 + i % 2)
+			{
+				if (!(newp(rs[0][0], i, k)))
+				{
+					if (k + 1 < i / 2 + i % 2)
+						newp(rs[0][0], i, ++k);
+					else
+					{
+						++i;
+						k = 0;
+					}
+				}
+			}
+			else
+			{
 				++i;
+				k = 0;
+			}
 		}
-		else
+		if (k)
 			if (test(ta, tb, rs, i))
-				return (print_rules(rules, rs[0][0], i));
+				return (rs[0][0]);
 	}
+	return (NULL);
 }

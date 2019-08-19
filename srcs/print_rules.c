@@ -12,14 +12,14 @@
 
 #include "push_swap.h"
 
-void	print_rules(char **rules, char *seq, int i)
+void	print_rules(char **rules, char *seq, int fd)
 {
 	int 	j;
 
 	j = -1;
-	while (++j < i)
+	while (seq[++j])
 	{
-		ft_putstr(rules[seq[j] - 48]);
-		write(1, "\n", 1);
+		fd != -1 ? write(fd, rules[seq[j] - 48], ft_strlen(rules[seq[j] - 48])) : ft_putstr(rules[seq[j] - 48]);
+		fd != -1 ? write(fd, "\n", 1) : write(1, "\n", 1);
 	}
 }

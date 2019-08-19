@@ -14,25 +14,37 @@
 
 int		main(int ac, char **av)
 {
-//	int 	fd;
+	int 			fd;
 	char			buf;
 	char			*rule;
 	t_ps			*a;
 	t_ps			*b;
 	unsigned short 	flag[2];
 
-//	fd = open("rules", O_RDONLY);
+	fd = 0;
 	buf = 0;
 	flag[0] = 0;
 	flag[1] = 0;
 	if (ac < 2)
 		return (0);
-	if (!(ft_strcmp(av[1], "-v")) || !(ft_strcmp(av[2], "-v")))
+	if (!(ft_strcmp(av[1], "-f")) || (ac > 2 && !(ft_strcmp(av[2], "-f"))) || (ac > 3 && !(ft_strcmp(av[3], "-f"))))
+	{
+		if (!(ft_strcmp(av[1], "-f")))
+			fd = 2;
+		else if (ac > 2 && !(ft_strcmp(av[2], "-f")))
+			fd = 3;
+		else if (ac > 3 && !(ft_strcmp(av[3], "-f")))
+			fd = 4;
+		if ((fd = open(av[fd], O_RDONLY)) == -1)
+			return (error());
+		flag[1] += 2;
+	}
+	if (!(ft_strcmp(av[1], "-v")) || (ac > 2 && !(ft_strcmp(av[2], "-v"))) || (ac > 3 && !(ft_strcmp(av[3], "-v"))))
 	{
 		flag[0] |= V;
 		++flag[1];
 	}
-	if (!(ft_strcmp(av[1], "-c")) || !(ft_strcmp(av[2], "-c")))
+	if (!(ft_strcmp(av[1], "-c")) || (ac > 2 && !(ft_strcmp(av[2], "-c"))) || (ac > 3 && !(ft_strcmp(av[3], "-c"))))
 	{
 		flag[0] |= C;
 		++flag[1];
@@ -41,7 +53,7 @@ int		main(int ac, char **av)
 		return (error());
 	if (!(b = b_stack(ac - 1 - flag[1])))
 		return (0);
-	while ((read(0, &buf, 1)))
+	while ((read(fd, &buf, 1)))
 	{
 		if (buf && buf != '\n')
 		{

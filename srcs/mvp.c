@@ -28,7 +28,7 @@ int 	mvp(char *seq, int i, int c)
 		}
 		else if (k > 1)
 		{
-			cleanp(seq, i);
+			cleannewp(seq, i);
 			if ((k = mvp(seq, i, c)))
 			{
 				if (k == c)

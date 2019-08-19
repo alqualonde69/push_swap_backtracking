@@ -54,6 +54,4 @@ void	applyrule(t_ps **a, t_ps **b, char **rule)
 			(*b)->c && (*b)->nxt->c ? rotate(b, 1) : 0;
 		}
 	}
-//	free(*rule);
-//	*rule = NULL;
 }

@@ -17,13 +17,8 @@ int 	test(t_ps *a, t_ps *b, char ***rs, int i)
 	int 	j;
 
 	j = -1;
-//	printf("i = %d ", i);
 	while (++j < i)
-	{
-//		printf("rule%d = %s ", j + 1, rs[1][rs[0][0][j] - 48]);
 		applyrule(&a, &b, &rs[1][rs[0][0][j] - 48]);
-	}
-//	printf("\n");
 	if (!(b->c) && issort(a))
 		return (1);
 	return (0);

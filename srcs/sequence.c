@@ -39,6 +39,8 @@ int		sequence(int i, char *seq)
 				break ;
 		}
 	}
-	while (!(issortseq(seq, j, c)))
+	if (i == -1)
+		return (0);
+	while (!(issortseq(seq, j, c)));
 	return (1);
 }

@@ -12,16 +12,16 @@
 
 #include "push_swap.h"
 
-int		issortseq(char *seq, int i, int c)
+int		issortseq(char *seq, int j, int c)
 {
-	int		j;
+	int		i;
 
-	j = i;
-	while (--i > 0)
+	i = 0;
+	while (++i < j)
 		if (IS)
 		{
 			sortseq(seq, i, c);
-			i = j;
+			i = 0;
 		}
 	return (1);
 }

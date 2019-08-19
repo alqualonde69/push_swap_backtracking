@@ -49,10 +49,11 @@ C_SRC_NAME		=	applyrule.c b_stack.c charjoin.c c_main.c error.c\
 					free_t_ps.c issort.c atoi_stack.c print.c push.c rotate.c\
 					swap.c
 
-P_SRC_NAME		=	applyrule.c atoi_stack.c b_stack.c error.c free_t_ps.c\
-					intcpy.c issort.c listcpy.c listcpy2.c print_rules.c\
-					ps_main.c push.c push_swap.c rotate.c rules_m.c sequence.c\
-					swap.c test.c
+P_SRC_NAME		=	applyrule.c atoi_stack.c b_stack.c chcknewp.c cleannewp.c\
+ 					error.c free_t_ps.c intcpy.c issort.c issortseq.c listcpy.c\
+ 					listcpy2.c movep.c mvp.c newp.c print_rules.c ps_main.c\
+ 					push.c push_swap.c rotate.c rules_m.c seqchr.c sequence.c\
+ 					sortseq.c swap.c test.c testp.c
 
 C_SRC			=	$(addprefix $(SRC_PATH), $(C_SRC_NAME))
 P_SRC			=	$(addprefix $(SRC_PATH), $(P_SRC_NAME))

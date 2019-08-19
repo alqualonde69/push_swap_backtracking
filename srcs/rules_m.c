@@ -23,6 +23,11 @@ char	**rules_m(void)
 	while (++i < 4)
 		if (!(rules[i] = (char *)malloc(sizeof(char) * 3)))
 			return (0);
+	if (!(rules[i] = (char *)malloc(sizeof(char) * 4)))
+		return (0);
+	while (++i < 9)
+		if (!(rules[i] = (char *)malloc(sizeof(char) * 3)))
+			return (0);
 	while (i < 11)
 		if (!(rules[i++] = (char *)malloc(sizeof(char) * 4)))
 			return (0);

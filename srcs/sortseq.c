@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int		sortseq(char *seq, int i, int c)
+void	sortseq(char *seq, int i, int c)
 {
 	if (S1)
 		++seq[i];
